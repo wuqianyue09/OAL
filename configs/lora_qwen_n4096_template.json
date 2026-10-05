@@ -1,0 +1,61 @@
+{
+  "method": "grouped_quadratic",
+  "tuning_mode": "lora",
+  "model_path": "models/Qwen2.5-0.5B",
+  "data_root": "data/qwen2.5-0.5b",
+  "runs_root": "runs",
+  "group_asset_path": "configs/oal_qwen_n4096.json",
+  "group_asset_mode": "precomputed",
+  "replacement_layers": "3:20",
+  "sequence_length": 4096,
+  "train_token_budget": 2097152,
+  "validation_blocks": 32,
+  "validation_interval_steps": 128,
+  "diagnostic_sequence_length": 128,
+  "diagnostic_interval_steps": 128,
+  "seed": 42,
+  "seed_protocol_version": "qwen_lora_seed_protocol_v1",
+  "seed_derivations": {
+    "seed_protocol_version": "qwen_lora_seed_protocol_v1",
+    "master_seed": 42,
+    "lora_init_seed": 7343342373812646833,
+    "training_global_rng_seed": 1386572687246239682,
+    "data_permutation_seed": 447239342449798306,
+    "diagnostic_inputs_seed": 8148864281883009369
+  },
+  "grouped_kernel_epsilon": 1e-06,
+  "grouped_workspace_budget_bytes": 536870912,
+  "lora_learning_rate": 0.0005,
+  "lora_weight_decay": 0.01,
+  "lora_beta1": 0.9,
+  "lora_beta2": 0.999,
+  "lora_epsilon": 1e-08,
+  "kernel_learning_rate": 0.0005,
+  "kernel_weight_decay": 0.01,
+  "kernel_beta1": 0.9,
+  "kernel_beta2": 0.999,
+  "kernel_epsilon": 1e-08,
+  "optimizer_candidate_configurations": 1,
+  "optimizer_tuning_seed_count": 1,
+  "pre_registered_master_seeds": [
+    17,
+    42,
+    73
+  ],
+  "warmup_ratio": 0.05,
+  "gradient_clip": 1.0,
+  "gradient_accumulation_steps": 1,
+  "dtype": "bfloat16",
+  "lora": {
+    "rank": 8,
+    "alpha": 16.0,
+    "dropout": 0.05,
+    "targets": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj"
+    ]
+  },
+  "model_profile": "qwen2_5_0_5b"
+}

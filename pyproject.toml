@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "setuptools-scm>=8,<10"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "oal-attention"
+version = "0.1.0"
+description = "Outlier-Aware Attention Linearization operators and reproducible LoRA experiments"
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.6",
+    "numpy",
+    "tomli>=2; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+data = ["datasets>=3,<4"]
+experiment = ["transformers==4.51.3"]
+test = ["pytest>=8", "setuptools>=68", "wheel", "pip"]
+cuda = ["triton>=3.2"]
+cuda-build = ["ninja"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["qwen_lora_experiment*", "oal_attention*"]
+
+[tool.setuptools.package-data]
+qwen_lora_experiment = ["fixtures/*.json"]
+oal_attention = ["csrc/*.cpp"]
+"oal_attention.triton" = ["grouped_quadratic_reviewed_records.json"]
